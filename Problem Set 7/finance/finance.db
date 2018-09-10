@@ -1,0 +1,48 @@
+----
+-- phpLiteAdmin database dump (http://www.phpliteadmin.org/)
+-- phpLiteAdmin version: 1.9.7.1
+-- Exported: 12:42pm on September 10, 2018 (UTC)
+-- database file: /home/ubuntu/workspace/pset7/finance/finance.db
+----
+BEGIN TRANSACTION;
+
+----
+-- Table structure for users
+----
+CREATE TABLE 'users' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'username' TEXT NOT NULL, 'hash' TEXT NOT NULL, 'cash' NUMERIC NOT NULL DEFAULT 10000.00 );
+
+----
+-- Data dump for users, a total of 3 rows
+----
+INSERT INTO "users" ("id","username","hash","cash") VALUES ('1','hey','pbkdf2:sha256:50000$K9A2ko19$159fe8bc5af13f02bf117dbc6fa46817fcd96cb76cdb09e66cc7904056d24256','10000');
+INSERT INTO "users" ("id","username","hash","cash") VALUES ('2','zeztron','pbkdf2:sha256:50000$rbkSsieq$22f2ad0af3fab6255d8e6fe7352d6ff50e0af774053d68ad65c51a065e3688b1','10000');
+INSERT INTO "users" ("id","username","hash","cash") VALUES ('3','zez','pbkdf2:sha256:50000$KLPOeexe$7cbe5f4a803d2fd5e5eacace12ea4c9b779f7bc5ceaeb1dfc5d50cddc15d3238','2600.135');
+
+----
+-- Table structure for history
+----
+CREATE TABLE 'history' ('symbol' TEXT,'shares' INTEGER, 'price' INTEGER, 'transacted' DATETIME DEFAULT CURRENT_TIMESTAMP,'id' INTEGER);
+
+----
+-- Data dump for history, a total of 5 rows
+----
+INSERT INTO "history" ("symbol","shares","price","transacted","id") VALUES ('GOOG','1','$1,232.87','2018-08-28 19:25:25','3');
+INSERT INTO "history" ("symbol","shares","price","transacted","id") VALUES ('GOOG','1','$1,231.18','2018-08-28 19:36:01','3');
+INSERT INTO "history" ("symbol","shares","price","transacted","id") VALUES ('GOOG','1','$1,229.69','2018-08-28 19:53:44','3');
+INSERT INTO "history" ("symbol","shares","price","transacted","id") VALUES ('GOOG','1','$1,231.48','2018-08-28 20:09:09','3');
+INSERT INTO "history" ("symbol","shares","price","transacted","id") VALUES ('GOOG','1','$1,231.15','2018-08-29 12:30:44','3');
+
+----
+-- Table structure for portfolio
+----
+CREATE TABLE 'portfolio' ('symbol' TEXT NOT NULL,'shares' INTEGER NOT NULL,'price' TEXT NOT NULL,'id' INTEGER NOT NULL,'total' TEXT NOT NULL  , 'name'  TEXT NOT NULL  );
+
+----
+-- Data dump for portfolio, a total of 0 rows
+----
+
+----
+-- structure for index username on table users
+----
+CREATE UNIQUE INDEX 'username' ON "users" ("username");
+COMMIT;
