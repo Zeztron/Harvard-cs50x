@@ -1,0 +1,61 @@
+// This program gives correct change!
+
+#include <stdio.h>
+#include <cs50.h>
+#include <math.h>
+
+int main(void)
+{
+
+    float n;
+    int count = 0;
+    int amount;
+
+    // Prompt user for an amount of change
+    do
+
+    {
+        printf("Change owed: ");
+        n = get_float();
+    }
+
+    while (n < 0);
+
+    // Convert into cents
+
+    n = (n + .005) * 100.0;
+    amount = (int) roundf(n);
+
+    // Quarters
+    while (n >= 25)
+    {
+        count++;
+        n -= 25;
+    }
+
+    // Dimes
+    while (n >= 10)
+    {
+        count ++;
+        n -= 10;
+    }
+
+    // Nickles
+    while (n >= 5)
+    {
+        count ++;
+        n -= 5;
+    }
+
+    // Pennies
+    while (n >= 1)
+    {
+        count ++;
+        n -= 1;
+    }
+
+    // Print amount of coins
+    printf("%i\n", count);
+
+    return 0;
+}
